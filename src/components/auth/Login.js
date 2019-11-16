@@ -3,6 +3,7 @@ import AuthService from "./auth-service";
 import { Link } from "react-router-dom";
 import history from "../../history";
 
+
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -20,7 +21,9 @@ class Login extends Component {
         console.log("WE LOGGED IN AND HERES THE USER ", response);
         this.setState({ username: "", password: "" });
         this.props.getUser(response);
+
         history.push("/dashboard");
+
       })
       .catch(error => console.log(error));
   };
@@ -41,6 +44,7 @@ class Login extends Component {
             value={this.state.username}
             onChange={e => this.handleChange(e)}
           />
+
           <br />
           <input
             type="password"
@@ -49,6 +53,7 @@ class Login extends Component {
             value={this.state.password}
             onChange={e => this.handleChange(e)}
           />
+
              <br />
           <input type="submit" value="Login!" />
         </form>
