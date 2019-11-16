@@ -12,6 +12,10 @@ class AddShenanigan extends Component {
   handleFormSubmit = event => {
 
     event.preventDefault();
+<<<<<<< HEAD
+=======
+
+>>>>>>> Randy
     const { eventName, description, category, location, lat, lng } = this.state;
     // const eventName = this.state.eventName;
     // const description = this.state.description;

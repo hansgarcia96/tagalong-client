@@ -37,12 +37,20 @@ class Navbar extends Component {
                 Vehicles
               </Link>
             </li>
+<<<<<<< HEAD
 
+=======
+{/* 
+>>>>>>> Randy
             <li>
               <Link to="/dashboard" style={{ textDecoration: "none" }}>
                 Home
               </Link>
+<<<<<<< HEAD
             </li>
+=======
+            </li> */}
+>>>>>>> Randy
            
 
             <li>
