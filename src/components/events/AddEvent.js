@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
 import service from "../../api/service";
-
 import AutoComplete from "../google/autoComplete";
+
+// ADD EVENT
 
 class AddShenanigan extends Component {
   constructor(props) {
