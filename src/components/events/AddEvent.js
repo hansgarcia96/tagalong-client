@@ -43,7 +43,6 @@ class AddShenanigan extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-
     axios
       .post("http://localhost:5000/api/events", this.state, {
         withCredentials: true

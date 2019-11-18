@@ -37,13 +37,6 @@ class Navbar extends Component {
                 Home
               </Link>
             </li>
-
-            <li>
-              <Link to="/profile" style={{ textDecoration: "none" }}>
-                Profile
-              </Link>
-            </li>
-
             <li>
               <Link to="/">
                 <button onClick={() => this.logoutUser()}>Logout</button>
