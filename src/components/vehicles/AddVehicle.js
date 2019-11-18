@@ -1,25 +1,47 @@
 import React, { Component } from "react";
 import axios from "axios";
+import service from "../../api/service";
 
 class AddVehicle extends Component {
   constructor(props) {
     super(props);
-    this.state = { vehicleType: "", model: "", year: "", seats: 0 };
+    this.state = {
+      vehicleType: "",
+      model: "",
+      year: "",
+      seats: 0,
+      imageUrl: ""
+    };
   }
+
+  handleChange = event => {
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
+  };
+
+  // this method handles just the file upload
+  handleFileUpload = e => {
+    console.log("The file to be uploaded is: ", e.target.files[0]);
+
+    const uploadData = new FormData();
+    uploadData.append("imageUrl", e.target.files[0]);
+
+    service
+      .handleUpload(uploadData)
+      .then(response => {
+        this.setState({ imageUrl: response.secure_url });
+      })
+      .catch(err => {
+        console.log("Error while uploading the file: ", err);
+      });
+  };
 
   handleFormSubmit = event => {
     event.preventDefault();
-    const vehicleType = this.state.vehicleType;
-    const model = this.state.model;
-    const year = this.state.year;
-    const seats = this.state.seats;
-
     axios
-      .post(
-        "http://localhost:5000/api/vehicles",
-        { vehicleType, model, year, seats },
-        { withCredentials: true }
-      )
+      .post("http://localhost:5000/api/vehicles", this.state, {
+        withCredentials: true
+      })
       .then(() => {
         this.props.getVehicle();
         this.setState({
@@ -27,14 +49,10 @@ class AddVehicle extends Component {
           model: "",
           year: "",
           seats: 0,
+          imageUrl: ""
         });
       })
       .catch(error => console.log(error));
-  };
-
-  handleChange = event => {
-    const { name, value } = event.target;
-    this.setState({ [name]: value });
   };
 
   render() {
@@ -69,8 +87,10 @@ class AddVehicle extends Component {
             value={this.state.seats}
             onChange={e => this.handleChange(e)}
           />
-
-          <input type="submit" value="Submit" />
+          <br />
+          <input type="file" onChange={e => this.handleFileUpload(e)} />
+          <br />
+          <button type="submit">Submit</button>
         </form>
       </div>
     );

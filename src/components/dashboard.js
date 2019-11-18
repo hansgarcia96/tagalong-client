@@ -7,13 +7,12 @@ class Dashboard extends Component {
     this.state = {};
   }
   render() {
-  
     if (this.props.currentUser) {
       return (
         <div>
           DASHBOARD
-          <div className='myTest'>
-            <UserEvents myUser={this.props.currentUser}/>
+          <div className="myTest">
+            <UserEvents myUser={this.props.currentUser} />
           </div>
         </div>
       );
@@ -31,16 +30,3 @@ class Dashboard extends Component {
 }
 
 export default Dashboard;
-
-// NEW FUNCTIONAL DASH
-// import React from "react";
-
-// const Header = () => {
-//   return (
-//     <header>
-//       <h1>DASHBOARD</h1>
-//     </header>
-//   );
-// };
-
-// export default Header;

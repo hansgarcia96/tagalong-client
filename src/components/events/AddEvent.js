@@ -1,49 +1,22 @@
 import React, { Component } from "react";
 import axios from "axios";
+import service from "../../api/service";
 
 import AutoComplete from "../google/autoComplete";
 
 class AddShenanigan extends Component {
   constructor(props) {
     super(props);
-    this.state = { eventName: "", description: "", category: "", location: "", lng:"", lat:"" }; // MISSING date: "", image: ""
-  }
-
-  handleFormSubmit = event => {
-
-    event.preventDefault();
-    const { eventName, description, category, location, lat, lng } = this.state;
-    // const eventName = this.state.eventName;
-    // const description = this.state.description;
-    // const category = this.state.category;
-    // const location = this.state.location;
-
-    axios
-      .post(
-        "http://localhost:5000/api/events",
-         this.state,
-        { withCredentials: true }
-      )
-      .then(() => {
-        this.props.getEvent();
-        this.setState({
-          eventName: "",
-          description: "",
-          category: "",
-          location: "",
-          lng:"",
-          lat:""
-        });
-      })
-      .catch(error => console.log(error));
-  };
-
-  setCoord = coordObj => {
-    console.log("coord in parent: ", coordObj)
-    this.setState({
-      lng: coordObj.lng,
-      lat: coordObj.lat
-    }, () => console.log("state in add event", this.state))
+    this.state = {
+      eventName: "",
+      description: "",
+      category: "",
+      location: "",
+      lng: "",
+      lat: "",
+      date: "",
+      imageUrl: ""
+    };
   }
 
   handleChange = event => {
@@ -51,8 +24,58 @@ class AddShenanigan extends Component {
     this.setState({ [name]: value });
   };
 
-  render() {
+  // this method handles just the file upload
+  handleFileUpload = e => {
+    console.log("The file to be uploaded is: ", e.target.files[0]);
 
+    const uploadData = new FormData();
+    uploadData.append("imageUrl", e.target.files[0]);
+
+    service
+      .handleUpload(uploadData)
+      .then(response => {
+        this.setState({ imageUrl: response.secure_url });
+      })
+      .catch(err => {
+        console.log("Error while uploading the file: ", err);
+      });
+  };
+
+  handleFormSubmit = event => {
+    event.preventDefault();
+
+    axios
+      .post("http://localhost:5000/api/events", this.state, {
+        withCredentials: true
+      })
+      .then(() => {
+        this.props.getEvent();
+        this.setState({
+          eventName: "",
+          description: "",
+          category: "",
+          location: "",
+          lng: "",
+          lat: "",
+          date: "",
+          imageUrl: ""
+        });
+      })
+      .catch(error => console.log(error));
+  };
+
+  setCoord = coordObj => {
+    console.log("coord in parent: ", coordObj);
+    this.setState(
+      {
+        lng: coordObj.lng,
+        lat: coordObj.lat
+      },
+      () => console.log("state in add event", this.state)
+    );
+  };
+
+  render() {
     return (
       <div>
         <form onSubmit={this.handleFormSubmit}>
@@ -64,12 +87,14 @@ class AddShenanigan extends Component {
             value={this.state.eventName}
             onChange={e => this.handleChange(e)}
           />
+          <br />
           <label>Description:</label>
           <textarea
             name="description"
             value={this.state.description}
             onChange={e => this.handleChange(e)}
           />
+          <br />
           <label>Category</label>
           <input
             type="text"
@@ -77,6 +102,7 @@ class AddShenanigan extends Component {
             value={this.state.category}
             onChange={e => this.handleChange(e)}
           />
+          <br />
           <label>Location</label>
           <input
             type="text"
@@ -84,12 +110,21 @@ class AddShenanigan extends Component {
             value={this.state.location}
             onChange={e => this.handleChange(e)}
           />
-
-          <input type="submit" value="Submit" />
+          <br />
+          <label>Date</label>
+          <input
+            type="date"
+            name="date"
+            value={this.state.date}
+            onChange={e => this.handleChange(e)}
+          />
+          <br />
+          <input type="file" onChange={e => this.handleFileUpload(e)} />
+          <br />
+          <button type="submit">Submit</button>
         </form>
 
-        {<AutoComplete getCoord={ coordObj => this.setCoord(coordObj) } />}
-
+        {<AutoComplete getCoord={coordObj => this.setCoord(coordObj)} />}
       </div>
     );
   }
