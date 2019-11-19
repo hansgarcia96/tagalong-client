@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import AuthService from "./auth-service";
 import { Link } from "react-router-dom";
-import AutoComplete from "../google/autoComplete";
+/* import AutoComplete from "../google/autoComplete"; */
 
 class Signup extends Component {
   constructor(props) {
@@ -47,6 +47,7 @@ class Signup extends Component {
     );
   };
 
+
   render() {
     return (
       <div>
@@ -69,12 +70,14 @@ class Signup extends Component {
           <input type="submit" value="Signup" />
         </form>
 
-        {<AutoComplete getCoord={coordObj => this.setCoord(coordObj)} />}
+        {/* {<AutoComplete getCoord={coordObj => this.setCoord(coordObj)} />} */}
 
         <p>
           Already have account?
           <Link to={"/login"}> Login</Link>
         </p>
+
+     
       </div>
     );
   }
