@@ -33,10 +33,6 @@ export default function AutoComplete({ getCoord }) {
         onSelect={handleSelect}
       >
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-<<<<<<< HEAD
-=======
-          
->>>>>>> Randy
           <div>
             <p>Latitude: {coordinates.lat}</p>
             <p>Longitude: {coordinates.lng}</p>
