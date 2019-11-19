@@ -23,18 +23,12 @@ class Navbar extends Component {
   render() {
     if (this.state.loggedInUser) {
       return (
-        
         <nav className="nav-style">
           <ul>
-            <li>Welcome, {this.state.loggedInUser.username}</li>
+            <li>Welcome, {this.state.loggedInUser.firstName}</li>
             <li>
               <Link to="/events" style={{ textDecoration: "none" }}>
                 Events
-              </Link>
-            </li>
-            <li>
-              <Link to="/vehicles" style={{ textDecoration: "none" }}>
-                Vehicles
               </Link>
             </li>
             <li>
@@ -42,8 +36,6 @@ class Navbar extends Component {
                 Home
               </Link>
             </li>
-           
-
             <li>
               <Link to="/">
                 <button onClick={() => this.logoutUser()}>Logout</button>
@@ -57,7 +49,7 @@ class Navbar extends Component {
         <nav className="nav-style">
           <ul>
             <li>
-            <Link to='/'></Link>
+              <Link to="/"></Link>
               <Link to="/signup" style={{ textDecoration: "none" }}>
                 Signup
               </Link>

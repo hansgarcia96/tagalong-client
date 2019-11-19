@@ -19,8 +19,6 @@ class EditEvent extends Component {
     const category = this.state.category;
     const location = this.state.location;
 
- 
-
     axios
       .put(`http://localhost:5000/api/events/${this.props.theEvent._id}`, {
         eventName,

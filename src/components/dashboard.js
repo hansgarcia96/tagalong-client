@@ -4,7 +4,6 @@ import Concerts from "./concerts/concert";
 
 
 
-
 class Dashboard extends Component {
   constructor(props) {
     super(props);
@@ -35,19 +34,20 @@ class Dashboard extends Component {
 
 
 
-  render() { 
-
-    this.getCurrentPosition()
-    // console.log(this.state);
    
+
+    // console.log(this.state);
+    
+  render() {
+    
+    this.getCurrentPosition()
     if (this.props.currentUser) {
       return (
         <div>
 
           DASHBOARD
-
-          <div className='myTest'>
-            <UserEvents myUser={this.props.currentUser}/>
+          <div className="myTest">
+            <UserEvents myUser={this.props.currentUser} />
           </div>
         
           {this.state.userLat !== '' ? <Concerts getUserCoords={this.state}/> : <div>Not Working</div>}
@@ -65,10 +65,7 @@ class Dashboard extends Component {
         </div>
       );
     }
-
   }
 }
 
 export default Dashboard;
-
-

@@ -24,10 +24,8 @@ class EventList extends Component {
     });
   };
 
-
-
   render() {
-    if(this.state.listOfEvents.length){
+
       return (
         <div>
           <div style={{ width: "60%", float: "left" }}>
@@ -46,10 +44,6 @@ class EventList extends Component {
           </div>
         </div>
       );
-    }else{
-      return<div>CONO</div>
-    }
-    
   }
 }
 

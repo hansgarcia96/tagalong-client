@@ -9,7 +9,7 @@ import TheMap from "../google/maps";
 class EventDetails extends Component {
   constructor(props) {
     super(props);
-    this.state = { theEvent: {} };
+    this.state = { theEvent: null };
   }
 
   componentDidMount() {
@@ -22,8 +22,7 @@ class EventDetails extends Component {
       .get(`http://localhost:5000/api/events/${params.id}`)
       .then(responseFromApi => {
         const theEvent = responseFromApi.data;
-        console.log(`the event lat: ${theEvent.lat}`)
-        console.log(`the event lng: ${theEvent.lng}`)
+        console.log(theEvent)
         this.setState(theEvent);
       })
       .catch(err => {
@@ -96,23 +95,33 @@ class EventDetails extends Component {
   };
 
   render() {
-    return (
-      <div>
-        <h1>{this.state.eventName}</h1>
-        <p>{this.state.description}</p>
-        <p>{this.state.category}</p>
-        <p>{this.state.location}</p>
-        <p>{this.state.lat}</p>
-        <p>{this.state.lng}</p>
-        <TheMap theEvent={this.state}/>
-        <h1>Hello WOrld!!!!</h1>
-{/*         <div>{this.renderEditForm()} </div>
-        <button onClick={() => this.deleteEvent()}>Delete Event</button>
-        <br />
-        <div>{this.ownershipCheck(this.state)}</div> */}
-        <Link to={"/events"}>Back to Events</Link>
-      </div>
-    );
+    if(this.state !== null){
+      return (
+        <div>
+          <h1>{this.state.eventName}</h1>
+          <p>{this.state.description}</p>
+          <p>{this.state.category}</p>
+          <p>{this.state.location}</p>
+          {this.state.author && <p>{this.state.author.firstName} {this.state.author.lastName}</p> }
+          <p>{this.state.lat}</p>
+          <p>{this.state.lng}</p>
+          <img src={this.state.imageUrl} alt="boohoo" height="300" />
+          <TheMap theEvent={this.state}/>
+          <div>{this.renderEditForm()} </div>
+          <button onClick={() => this.deleteEvent()}>Delete Event</button>
+          <br />
+          <div>{this.ownershipCheck(this.state)}</div>
+          <Link to={"/events"}>Back to Events</Link>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+         Loading
+        </div>
+      );
+    }
+
   }
 }
 
