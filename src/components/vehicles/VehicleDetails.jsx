@@ -89,6 +89,7 @@ class VehicleDetails extends Component {
     return (
       <div>
         <h1>{this.state.model}</h1>
+        <p>{this.state.seats}</p>
         <button onClick={() => this.deleteVehicle()}>Delete Vehicle</button>
         <img src={this.state.imageUrl} alt="boohoo" height="300" />
         <Link to={"/vehicles"}>Back to Vehicle</Link>

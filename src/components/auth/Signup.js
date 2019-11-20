@@ -3,7 +3,6 @@ import AuthService from "./auth-service";
 import { Link } from "react-router-dom";
 import history from "../../history";
 import service from "../../api/service";
-import AutoComplete from "../google/autoComplete";
 
 class Signup extends Component {
   constructor(props) {
@@ -14,7 +13,6 @@ class Signup extends Component {
       firstName: "",
       lastName: "",
       imageUrl: "",
-      lat: "", lng: "" 
     };
     this.service = new AuthService();
   }
@@ -47,11 +45,9 @@ class Signup extends Component {
     const firstName = this.state.firstName;
     const lastName = this.state.lastName;
     const imageUrl = this.state.imageUrl;
-    const lat = this.state.lat;
-    const lng = this.state.lng;
 
     this.service
-      .signup(username, password, firstName, lastName, imageUrl, lat, lng)
+      .signup(username, password, firstName, lastName, imageUrl)
       .then(response => {
         this.setState({
           username: "",
@@ -59,31 +55,18 @@ class Signup extends Component {
           firstName: "",
           lastName: "",
           imageUrl: "",
-          lat: "",
-          lng: ""
         });
         this.props.getUser(response);
+        history.push("/dashboard");
       })
       .catch(error => console.log(error));
   };
-
 
   handleChange = event => {
     const { name, value } = event.target;
     this.setState({ [name]: value });
   };
 
-  setCoord = coordObj => {
-    console.log("coord in parent signup: ", coordObj);
-    this.setState(
-      {
-        lng: coordObj.lng,
-        lat: coordObj.lat
-      },
-      () => console.log("state in singup", this.state)
-    );
-  };
-  
   render() {
     return (
       <div>
@@ -97,7 +80,8 @@ class Signup extends Component {
           />
 
           <label>Password:</label>
-          <textarea
+          <input
+            type="password"
             name="password"
             value={this.state.password}
             onChange={e => this.handleChange(e)}
@@ -123,9 +107,6 @@ class Signup extends Component {
           <br />
           <button type="submit">Submit</button>
         </form>
-
-        {<AutoComplete getCoord={coordObj => this.setCoord(coordObj)} />}
-
         <p>
           Already have account?
           <Link to={"/login"}> Login</Link>

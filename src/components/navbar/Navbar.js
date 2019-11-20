@@ -31,10 +31,14 @@ class Navbar extends Component {
                 Events
               </Link>
             </li>
-
             <li>
               <Link to="/dashboard" style={{ textDecoration: "none" }}>
                 Home
+              </Link>
+            </li>
+            <li>
+              <Link to="/profile" style={{ textDecoration: "none" }}>
+                Profile
               </Link>
             </li>
             <li>

@@ -33,7 +33,7 @@ class UserEvents extends Component {
         return eachEvent.author === myId;
       });
     }
-    console.log(filterEvents);
+    // console.log(filterEvents);
     return filterEvents.map(eachEvent => {
       return (
         <div key={eachEvent._id}>

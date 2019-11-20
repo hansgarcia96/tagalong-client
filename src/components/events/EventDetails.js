@@ -104,9 +104,11 @@ class EventDetails extends Component {
           <p>{this.state.location}</p>
           {this.state.author && <p>{this.state.author.firstName} {this.state.author.lastName}</p> }
           <p>{this.state.lat}</p>
+          <h3>{this.state.transportation}</h3>
           <p>{this.state.lng}</p>
           <img src={this.state.imageUrl} alt="boohoo" height="300" />
           <TheMap theEvent={this.state}/>
+          <div><h1>Vehicle Component belongs here</h1></div>
           <div>{this.renderEditForm()} </div>
           <button onClick={() => this.deleteEvent()}>Delete Event</button>
           <br />

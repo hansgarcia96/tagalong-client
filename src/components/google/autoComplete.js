@@ -61,33 +61,3 @@ export default function AutoComplete({ getCoord }) {
     </div>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-
-        <p>
-          Map Here
-        </p>
-     
-      </header>
-    </div>
-  );
-}
-
-export default App; */

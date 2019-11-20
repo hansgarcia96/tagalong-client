@@ -3,6 +3,10 @@ import axios from "axios";
 import service from "../../api/service";
 import AutoComplete from "../google/autoComplete";
 
+// import VehicleList from "../vehicles/VehicleList";
+
+import SimpleVehicleList from "../vehicles/SimpleVehicleList";
+
 // ADD EVENT
 
 class AddShenanigan extends Component {
@@ -16,7 +20,9 @@ class AddShenanigan extends Component {
       lng: "",
       lat: "",
       date: "",
-      imageUrl: ""
+      imageUrl: "",
+      showingVehicleList: false,
+      // displayNumberOfVehicles: ""
     };
   }
 
@@ -75,6 +81,11 @@ class AddShenanigan extends Component {
     );
   };
 
+  showAddVehicleFuntion = () => {
+    console.log("button clicked");
+    this.setState({ showingVehicleList: true });
+  };
+
   render() {
     return (
       <div>
@@ -122,7 +133,19 @@ class AddShenanigan extends Component {
           <input type="file" onChange={e => this.handleFileUpload(e)} />
           <br />
           <button type="submit">Submit</button>
+          <br />
+          <button
+            onClick={this.showAddVehicleFuntion}
+            onChange={e => this.handleChange(e)}
+          >
+            Add Vehicles to event
+          </button>
+
+          
         </form>
+
+        <h1>Hello World</h1>
+          {this.state.showingVehicleList && <div><h1>VehicleList Belongs Here</h1><SimpleVehicleList /></div>}
 
         {<AutoComplete getCoord={coordObj => this.setCoord(coordObj)} />}
       </div>
