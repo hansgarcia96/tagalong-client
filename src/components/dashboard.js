@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import UserEvents from "./events/UserEvents";
 import Concerts from "./concerts/concert";
 
-
-
 class Dashboard extends Component {
   constructor(props) {
     super(props);

@@ -33,7 +33,6 @@ export default function AutoComplete({ getCoord }) {
         onSelect={handleSelect}
       >
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-          
           <div>
             <p>Latitude: {coordinates.lat}</p>
             <p>Longitude: {coordinates.lng}</p>
@@ -62,33 +61,3 @@ export default function AutoComplete({ getCoord }) {
     </div>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-
-        <p>
-          Map Here
-        </p>
-     
-      </header>
-    </div>
-  );
-}
-
-export default App; */
