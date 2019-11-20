@@ -16,14 +16,24 @@ class AddShenanigan extends Component {
       eventName: "",
       description: "",
       category: "",
-      location: "",
       lng: "",
       lat: "",
-      date: "",
+      startDate: "",
+      endDate: "",
       imageUrl: "",
       showingVehicleList: false,
+      listOfVehicles: []
       // displayNumberOfVehicles: ""
     };
+  }
+
+  componentDidMount() {
+    fetch("http://localhost:5000/api/vehicles/")
+      .then(response => response.json())
+      .then(data => {
+        this.setState({ listOfVehicles: data });
+        console.log(this.state.listOfVehicles);
+      });
   }
 
   handleChange = event => {
@@ -63,7 +73,8 @@ class AddShenanigan extends Component {
           location: "",
           lng: "",
           lat: "",
-          date: "",
+          startDate: "",
+          endDate: "",
           imageUrl: ""
         });
       })
@@ -114,43 +125,59 @@ class AddShenanigan extends Component {
             onChange={e => this.handleChange(e)}
           />
           <br />
-          <label>Location</label>
-          <input
-            type="text"
-            name="location"
-            value={this.state.location}
-            onChange={e => this.handleChange(e)}
-          />
+          {<AutoComplete getCoord={coordObj => this.setCoord(coordObj)} />}
           <br />
-          <label>Date</label>
+          <label>Start Date</label>
           <input
             type="date"
-            name="date"
-            value={this.state.date}
+            name="startDate"
+            value={this.state.startDate}
+            onChange={e => this.handleChange(e)}
+          />
+          <label>End Date</label>
+          <input
+            type="date"
+            name="endDate"
+            value={this.state.endDate}
             onChange={e => this.handleChange(e)}
           />
           <br />
           <input type="file" onChange={e => this.handleFileUpload(e)} />
           <br />
-          <button type="submit">Submit</button>
+
+          <form>
+            <select name="vehicle">
+              {this.state.listOfVehicles.map(eachVehicle => (
+                <option key={eachVehicle._id}>{eachVehicle.model}</option>
+              ))}
+            </select>
+          </form>
+
+          <button type="submit" onChange={e => this.handleChange(e)}>
+            Submit
+          </button>
           <br />
-          <button
+          </form>
+      </div>
+      
+    );
+  }
+}
+
+// OLD CODE
+    {/* <button
             onClick={this.showAddVehicleFuntion}
             onChange={e => this.handleChange(e)}
           >
             Add Vehicles to event
-          </button>
+          </button> */}
+     
+        {/* {this.state.showingVehicleList && (
+          <div>
+            <h1>Vehicle List</h1>
+            <SimpleVehicleList />
+          </div>
+        )} */}
 
-          
-        </form>
-
-        <h1>Hello World</h1>
-          {this.state.showingVehicleList && <div><h1>VehicleList Belongs Here</h1><SimpleVehicleList /></div>}
-
-        {<AutoComplete getCoord={coordObj => this.setCoord(coordObj)} />}
-      </div>
-    );
-  }
-}
 
 export default AddShenanigan;

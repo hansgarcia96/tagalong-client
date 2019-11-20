@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import AutoComplete from "../google/autoComplete";
 
 class EditEvent extends Component {
   constructor(props) {
@@ -8,7 +9,10 @@ class EditEvent extends Component {
       eventName: this.props.theEvent.eventName,
       description: this.props.theEvent.description,
       category: this.props.theEvent.category,
-      location: this.props.theEvent.location
+      startDate: this.props.theEvent.startDate,
+      endDate: this.props.theEvent.endDate,
+      lng: this.props.theEvent.lng,
+      lat: this.props.theEvent.lat
     };
   }
 
@@ -17,14 +21,20 @@ class EditEvent extends Component {
     const eventName = this.state.eventName;
     const description = this.state.description;
     const category = this.state.category;
-    const location = this.state.location;
+    const startDate = this.state.startDate;
+    const endDate = this.state.endDate;
+    const lng = this.state.lng;
+    const lat = this.state.lat;
 
     axios
       .put(`http://localhost:5000/api/events/${this.props.theEvent._id}`, {
         eventName,
         description,
         category,
-        location
+        startDate,
+        endDate,
+        lng,
+        lat
       })
       .then(() => {
         this.props.getTheEvent();
@@ -34,28 +44,20 @@ class EditEvent extends Component {
       .catch(error => console.log(error));
   };
 
-  handleChangeEventName = event => {
-    this.setState({
-      eventName: event.target.value
-    });
+  handleChange = event => {
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
   };
 
-  handleChangeDescription = event => {
-    this.setState({
-      description: event.target.value
-    });
-  };
-
-  handleChangeCategory = event => {
-    this.setState({
-      category: event.target.value
-    });
-  };
-
-  handleChangeLocation = event => {
-    this.setState({
-      location: event.target.value
-    });
+  setCoord = coordObj => {
+    console.log("coord in parent: ", coordObj);
+    this.setState(
+      {
+        lng: coordObj.lng,
+        lat: coordObj.lat
+      },
+      () => console.log("state in add event", this.state)
+    );
   };
 
   render() {
@@ -69,29 +71,39 @@ class EditEvent extends Component {
             type="text"
             name="eventName"
             value={this.state.eventName}
-            onChange={event => this.handleChangeEventName(event)}
+            onChange={event => this.handleChange(event)}
           />
 
           <label>Description:</label>
           <textarea
             name="description"
             value={this.state.description}
-            onChange={event => this.handleChangeDescription(event)}
+            onChange={event => this.handleChange(event)}
           />
 
           <label>Category:</label>
           <textarea
             name="category"
             value={this.state.category}
-            onChange={e => this.handleChangeCategory(e)}
+            onChange={e => this.handleChange(e)}
           />
+          <label>Start Date</label>
+          <input
+            name="startDate"
+            type="date"
+            value={this.state.startDate}
+            onChange={e => this.handleChange(e)}
+          ></input>
 
-          <label>Location:</label>
-          <textarea
-            name="location"
-            value={this.state.location}
-            onChange={e => this.handleChangeLocation(e)}
-          />
+          <label>End Date</label>
+          <input
+            name="endDate"
+            type="date"
+            value={this.state.endDate}
+            onChange={e => this.handleChange(e)}
+          ></input>
+
+          {<AutoComplete getCoord={coordObj => this.setCoord(coordObj)} />}
 
           <input type="submit" value="Submit" />
         </form>

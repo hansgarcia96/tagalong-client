@@ -101,10 +101,12 @@ class EventDetails extends Component {
           <h1>{this.state.eventName}</h1>
           <p>{this.state.description}</p>
           <p>{this.state.category}</p>
-          <p>{this.state.location}</p>
           {this.state.author && <p>{this.state.author.firstName} {this.state.author.lastName}</p> }
-          <p>{this.state.lat}</p>
+
+          <p>Start Date: {this.state.startDate}</p>
+          <p>End Date: {this.state.endDate}</p>
           <h3>{this.state.transportation}</h3>
+          <p>{this.state.lat}</p>
           <p>{this.state.lng}</p>
           <img src={this.state.imageUrl} alt="boohoo" height="300" />
           <TheMap theEvent={this.state}/>
