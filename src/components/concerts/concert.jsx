@@ -87,7 +87,7 @@ class Concerts extends Component {
     return ( 
       <div>
         <div>
-          <h1>Concerts in Miami!</h1>
+          <h1>Concerts Nearby Based On User Broswer Location!</h1>
           {this.showConcerts()}
         </div>
       </div>
