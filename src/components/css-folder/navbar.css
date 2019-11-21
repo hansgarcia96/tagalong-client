@@ -1,0 +1,39 @@
+@fontface {
+  font-family: 'Alata', sans-serif;
+  font-family: 'Roboto', sans-serif;
+  src: url('https://fonts.googleapis.com/css?family=Alata|Roboto&display=swap')
+}
+
+.nav-style {
+  display: flex;
+  justify-content: space-between;
+  height: 85px;
+  border: none;
+  background-color: transparent;
+
+}
+
+#theText li {
+  list-style-type: none;
+  display: inline-block;
+
+}
+
+
+.logo {
+  height: 100px;
+  padding-left: 30px;
+  width: auto;
+}
+
+.userSign li{
+  margin-top: 25px;
+  padding-right: 55px;
+  font-size: 23px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.userSign a{
+  margin-top: 25px;
+  color: #fff !important;
+}
