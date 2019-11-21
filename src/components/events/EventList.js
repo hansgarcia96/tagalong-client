@@ -23,8 +23,9 @@ class EventList extends Component {
     });
   };
 
-  render() {
 
+  render() {
+    
       return (
         <div>
           <div style={{ width: "60%", float: "left" }}>
@@ -43,6 +44,8 @@ class EventList extends Component {
           </div>
         </div>
       );
+   
+    
   }
 }
 

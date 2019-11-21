@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import AuthService from "./auth-service";
 import { Link } from "react-router-dom";
 import history from "../../history";
+import '../css-folder/loginApp.css';
+import BodyClassName from 'react-body-classname';
+
 
 
 class Login extends Component {
@@ -35,7 +38,8 @@ class Login extends Component {
 
   render() {
     return (
-      <div>
+      <div className="theLogin">
+      <BodyClassName className="inside"></BodyClassName>
         <form onSubmit={this.handleFormSubmit}>
           <input
             type="text"

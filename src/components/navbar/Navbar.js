@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import AuthService from "../auth/auth-service";
+import '../css-folder/navbar.css';
+import TagLogo from '../css-folder/images/LogoMakr_1z6JBI.png';
 
 class Navbar extends Component {
   constructor(props) {
@@ -8,22 +10,20 @@ class Navbar extends Component {
     this.state = { loggedInUser: null };
     this.service = new AuthService();
   }
-
   componentWillReceiveProps(nextProps) {
     this.setState({ ...this.state, loggedInUser: nextProps["userInSession"] });
   }
-
   logoutUser = () => {
     this.service.logout().then(() => {
       this.setState({ loggedInUser: null });
       this.props.getTheUser(null);
     });
   };
-
   render() {
     if (this.state.loggedInUser) {
       return (
         <nav className="nav-style">
+         <img src ={TagLogo} className="logo"/>
           <ul>
             <li>Welcome, {this.state.loggedInUser.firstName}</li>
             <li>
@@ -41,6 +41,7 @@ class Navbar extends Component {
                 Profile
               </Link>
             </li>
+           
             <li>
               <Link to="/">
                 <button onClick={() => this.logoutUser()}>Logout</button>
@@ -51,24 +52,9 @@ class Navbar extends Component {
       );
     } else {
       return (
-        <nav className="nav-style">
-          <ul>
-            <li>
-              <Link to="/"></Link>
-              <Link to="/signup" style={{ textDecoration: "none" }}>
-                Signup
-              </Link>
-            </li>
-            <li>
-              <Link to="/login" style={{ textDecoration: "none" }}>
-                Login
-              </Link>
-            </li>
-          </ul>
-        </nav>
+       <React.Fragment></React.Fragment>
       );
     }
   }
 }
-
 export default Navbar;
