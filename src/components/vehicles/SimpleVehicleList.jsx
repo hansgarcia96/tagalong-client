@@ -4,19 +4,11 @@ import { Link } from "react-router-dom";
 
 import AddVehicle from "./AddVehicle";
 
-// import EditVehicle from "./EditVehicle"
-
-class VehicleList extends Component {
+class SimpleVehicleList extends Component {
   constructor() {
     super();
     this.state = { listOfVehicles: [], listOfVehiclesUserVehicles: [] };
   }
-
-  // getVehiclesFromUser = () => {
-  //   axios
-  //     .get(`http://localhost:5000/api/vehicles`)
-  //     .then((responseFromApi = {}));
-  // };
 
   getAllVehicles = () => {
     axios.get(`http://localhost:5000/api/vehicles`).then(responseFromApi => {
@@ -44,12 +36,10 @@ class VehicleList extends Component {
             );
           })}
         </div>
-        <div style={{ width: "40%", float: "right" }}>
-          <AddVehicle getVehicle={this.getAllVehicles} />
-        </div>
+     
       </div>
     );
   }
 }
 
-export default VehicleList;
+export default SimpleVehicleList;

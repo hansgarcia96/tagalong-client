@@ -35,8 +35,8 @@ export default function AutoComplete({ getCoord }) {
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
           
           <div>
-            <p>Latitude: {coordinates.lat}</p>
-            <p>Longitude: {coordinates.lng}</p>
+            {/* <p>Latitude: {coordinates.lat}</p>
+            <p>Longitude: {coordinates.lng}</p> */}
 
             <input {...getInputProps({ placeholder: "Type address" })} />
 
@@ -62,33 +62,3 @@ export default function AutoComplete({ getCoord }) {
     </div>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-
-        <p>
-          Map Here
-        </p>
-     
-      </header>
-    </div>
-  );
-}
-
-export default App; */

@@ -22,24 +22,23 @@ class Navbar extends Component {
   render() {
     if (this.state.loggedInUser) {
       return (
-        
         <nav className="nav-style">
          <img src ={TagLogo} className="logo"/>
           <ul>
-            <li>Welcome, {this.state.loggedInUser.username}</li>
+            <li>Welcome, {this.state.loggedInUser.firstName}</li>
             <li>
               <Link to="/events" style={{ textDecoration: "none" }}>
                 Events
               </Link>
             </li>
             <li>
-              <Link to="/vehicles" style={{ textDecoration: "none" }}>
-                Vehicles
+              <Link to="/dashboard" style={{ textDecoration: "none" }}>
+                Home
               </Link>
             </li>
             <li>
-              <Link to="/dashboard" style={{ textDecoration: "none" }}>
-                Home
+              <Link to="/profile" style={{ textDecoration: "none" }}>
+                Profile
               </Link>
             </li>
            

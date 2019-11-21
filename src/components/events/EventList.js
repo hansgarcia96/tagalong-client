@@ -10,17 +10,27 @@ class EventList extends Component {
     this.state = { listOfEvents: [] };
   }
 
+  componentDidMount() {
+    this.getAllEvents();
+  }
+
   getAllEvents = () => {
-    axios.get(`http://localhost:5000/api/events`).then(responseFromApi => {
+    axios.get(`http://localhost:5000/api/events`)
+    .then(responseFromApi => {
       this.setState({
         listOfEvents: responseFromApi.data
       });
     });
   };
 
+<<<<<<< HEAD
 
   render() {
     
+=======
+  render() {
+
+>>>>>>> 599d2c19d41f5ab1964f25393acd5264b5100c1c
       return (
         <div>
           <div style={{ width: "60%", float: "left" }}>
@@ -39,8 +49,11 @@ class EventList extends Component {
           </div>
         </div>
       );
+<<<<<<< HEAD
    
     
+=======
+>>>>>>> 599d2c19d41f5ab1964f25393acd5264b5100c1c
   }
 }
 

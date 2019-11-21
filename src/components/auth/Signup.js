@@ -1,32 +1,63 @@
 import React, { Component } from "react";
 import AuthService from "./auth-service";
 import { Link } from "react-router-dom";
-import AutoComplete from "../google/autoComplete";
+import history from "../../history";
+import service from "../../api/service";
 
 class Signup extends Component {
   constructor(props) {
     super(props);
-    this.state = { username: "", password: "", lat: "", lng: "" };
+    this.state = {
+      username: "",
+      password: "",
+      firstName: "",
+      lastName: "",
+      imageUrl: "",
+    };
     this.service = new AuthService();
   }
+
+  handleChange = event => {
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
+  };
+
+  handleFileUpload = e => {
+    console.log("The file to be uploaded is: ", e.target.files[0]);
+
+    const uploadData = new FormData();
+    uploadData.append("imageUrl", e.target.files[0]);
+
+    service
+      .handleUpload(uploadData)
+      .then(response => {
+        this.setState({ imageUrl: response.secure_url });
+      })
+      .catch(err => {
+        console.log("Error while uploading the file: ", err);
+      });
+  };
 
   handleFormSubmit = event => {
     event.preventDefault();
     const username = this.state.username;
     const password = this.state.password;
-    const lat = this.state.lat;
-    const lng = this.state.lng;
+    const firstName = this.state.firstName;
+    const lastName = this.state.lastName;
+    const imageUrl = this.state.imageUrl;
 
     this.service
-      .signup(username, password, lat, lng)
+      .signup(username, password, firstName, lastName, imageUrl)
       .then(response => {
         this.setState({
           username: "",
           password: "",
-          lat: "",
-          lng: ""
+          firstName: "",
+          lastName: "",
+          imageUrl: "",
         });
         this.props.getUser(response);
+        history.push("/dashboard");
       })
       .catch(error => console.log(error));
   };
@@ -34,17 +65,6 @@ class Signup extends Component {
   handleChange = event => {
     const { name, value } = event.target;
     this.setState({ [name]: value });
-  };
-
-  setCoord = coordObj => {
-    console.log("coord in parent signup: ", coordObj);
-    this.setState(
-      {
-        lng: coordObj.lng,
-        lat: coordObj.lat
-      },
-      () => console.log("state in singup", this.state)
-    );
   };
 
   render() {
@@ -60,17 +80,33 @@ class Signup extends Component {
           />
 
           <label>Password:</label>
-          <textarea
+          <input
+            type="password"
             name="password"
             value={this.state.password}
             onChange={e => this.handleChange(e)}
           />
-
-          <input type="submit" value="Signup" />
+          <br />
+          <input
+            type="text"
+            placeholder="First Name"
+            name="firstName"
+            value={this.state.firstName}
+            onChange={e => this.handleChange(e)}
+          />
+          <br />
+          <input
+            type="text"
+            placeholder="Last Name"
+            name="lastName"
+            value={this.state.lastName}
+            onChange={e => this.handleChange(e)}
+          />
+          <br />
+          <input type="file" onChange={e => this.handleFileUpload(e)} />
+          <br />
+          <button type="submit">Submit</button>
         </form>
-
-        {<AutoComplete getCoord={coordObj => this.setCoord(coordObj)} />}
-
         <p>
           Already have account?
           <Link to={"/login"}> Login</Link>
