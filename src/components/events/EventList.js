@@ -10,14 +10,8 @@ class EventList extends Component {
     this.state = { listOfEvents: [] };
   }
 
-  componentDidMount() {
-    this.getAllEvents();
-  }
-
   getAllEvents = () => {
-    console.log("IM MOVING");
-    axios.get(`http://localhost:5000/api/events`)
-    .then(responseFromApi => {
+    axios.get(`http://localhost:5000/api/events`).then(responseFromApi => {
       this.setState({
         listOfEvents: responseFromApi.data
       });

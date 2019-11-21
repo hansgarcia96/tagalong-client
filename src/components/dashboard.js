@@ -8,8 +8,7 @@ class Dashboard extends Component {
     super(props);
     this.state = {};
   }
-  render() {
-  
+  render() {  
     if (this.props.currentUser) {
       return (
         <div>
@@ -29,6 +28,7 @@ class Dashboard extends Component {
         </div>
       );
     }
+
   }
 }
 

@@ -1,0 +1,32 @@
+@fontface {
+  font-family: 'Alata', sans-serif;
+  font-family: 'Roboto', sans-serif;
+  src: url('https://fonts.googleapis.com/css?family=Alata|Roboto&display=swap')
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+
+.outside{
+  background-image: url('./images/two-women-sitting-on-vehicle-roofs-2409681.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 650px;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.mainHeader p{
+  font-family: 'Alata', sans-serif;
+  color: white;
+  line-height: 6.5rem;
+  text-align: center;
+  font-size: 6em;
+  padding-top: 450px;
+  font-weight: bold;
+  text-shadow: #000000 1px 0 10px;
+}
+
