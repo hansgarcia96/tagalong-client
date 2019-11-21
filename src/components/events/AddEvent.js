@@ -3,10 +3,6 @@ import axios from "axios";
 import service from "../../api/service";
 import AutoComplete from "../google/autoComplete";
 
-// import VehicleList from "../vehicles/VehicleList";
-
-import SimpleVehicleList from "../vehicles/SimpleVehicleList";
-
 // ADD EVENT
 
 class AddShenanigan extends Component {
@@ -22,8 +18,8 @@ class AddShenanigan extends Component {
       endDate: "",
       imageUrl: "",
       showingVehicleList: false,
-      listOfVehicles: []
-      // displayNumberOfVehicles: ""
+      listOfVehicles: [],
+      transportation: ""
     };
   }
 
@@ -39,6 +35,11 @@ class AddShenanigan extends Component {
   handleChange = event => {
     const { name, value } = event.target;
     this.setState({ [name]: value });
+    //console.log("handleChange in AddEvent", this.setState)
+  };
+
+  handleSelect = e => {
+    this.setState({ transportation: e.target.value });
   };
 
   // this method handles just the file upload
@@ -59,6 +60,8 @@ class AddShenanigan extends Component {
   };
 
   handleFormSubmit = event => {
+    console.log("handleFormSubmit Working");
+    console.log(`handleFOrmSubmit this.state:`, this.state);
     event.preventDefault();
     axios
       .post("http://localhost:5000/api/events", this.state, {
@@ -75,7 +78,8 @@ class AddShenanigan extends Component {
           lat: "",
           startDate: "",
           endDate: "",
-          imageUrl: ""
+          imageUrl: "",
+          transportation: "" // possible error
         });
       })
       .catch(error => console.log(error));
@@ -100,7 +104,7 @@ class AddShenanigan extends Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.handleFormSubmit}>
+        <form onSubmit={e => this.handleFormSubmit(e)}>
           <label>Event</label>
           <input
             type="text"
@@ -145,39 +149,44 @@ class AddShenanigan extends Component {
           <input type="file" onChange={e => this.handleFileUpload(e)} />
           <br />
 
-          <form>
-            <select name="vehicle">
-              {this.state.listOfVehicles.map(eachVehicle => (
-                <option key={eachVehicle._id}>{eachVehicle.model}</option>
-              ))}
-            </select>
-          </form>
+          <select
+            value={this.state.transportation}
+            onChange={e => this.handleSelect(e)}
+          >
+            {this.state.listOfVehicles.map(eachVehicle => (
+              <option value={eachVehicle._id} key={eachVehicle._id}>
+                {eachVehicle.model}
+              </option>
+            ))}
+          </select>
 
           <button type="submit" onChange={e => this.handleChange(e)}>
             Submit
           </button>
           <br />
-          </form>
+        </form>
       </div>
-      
     );
   }
 }
 
 // OLD CODE
-    {/* <button
+{
+  /* <button
             onClick={this.showAddVehicleFuntion}
             onChange={e => this.handleChange(e)}
           >
             Add Vehicles to event
-          </button> */}
-     
-        {/* {this.state.showingVehicleList && (
+          </button> */
+}
+
+{
+  /* {this.state.showingVehicleList && (
           <div>
             <h1>Vehicle List</h1>
             <SimpleVehicleList />
           </div>
-        )} */}
-
+        )} */
+}
 
 export default AddShenanigan;

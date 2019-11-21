@@ -1,5 +1,5 @@
 import React from "react";
-import { GoogleMap, withScriptjs, withGoogleMap } from "react-google-maps";
+import { GoogleMap, withScriptjs, withGoogleMap, Marker } from "react-google-maps";
 
 export default function theMap(props) {
   const latitude = props.theEvent.lat;
@@ -12,8 +12,14 @@ export default function theMap(props) {
       <GoogleMap
         defaultZoom={10}
         defaultCenter={{ lat: latitude, lng: longitude }}
-      />
-      
+      >
+        <Marker
+          position ={{
+            lat: latitude,
+            lng: longitude
+          }}
+        />
+      </GoogleMap>
     );
   }
 

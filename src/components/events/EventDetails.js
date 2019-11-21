@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom"; // REDIRECT
 import EditEvent from "./EditEvent";
 
-/* import {GoogleMap, withScriptjs, withGoogleMap} from 'react-google-maps' */
+
 import TheMap from "../google/maps";
 
 class EventDetails extends Component {
@@ -14,39 +14,57 @@ class EventDetails extends Component {
 
   componentDidMount() {
     this.getSingleEvent();
+  
   }
 
-  getSingleEvent = () => {
+  getSingleEvent = async() => {
     const { params } = this.props.match;
-    axios
+    await axios
       .get(`http://localhost:5000/api/events/${params.id}`)
       .then(responseFromApi => {
         const theEvent = responseFromApi.data;
-        console.log(theEvent)
-        this.setState(theEvent);
+        console.log("the event: ", theEvent)
+        this.setState(theEvent, () => {
+          this.getVehicle(this.state)
+        });
       })
       .catch(err => {
         console.log(err);
       });
   };
 
-
-  renderEditForm = () => {
-    if (!this.state.eventName) {
-      this.getSingleEvent();
-    } else {
-      //                                                    {...props} => so we can have 'this.props.history' in Edit.js
-      //                                                                                          ^
-      //                                                                                          |
-      return (
-        <EditEvent
-          theEvent={this.state}
-          getTheEvent={this.getSingleEvent}
-          {...this.props}
-        />
-      );
+  getVehicle = (theInfo) => {
+    console.log(theInfo)
+    let theId = ''
+    if(theInfo){
+     theId = theInfo.transportation[0]
     }
-  };
+    axios.get(`http://localhost:5000/api/vehicles/${theId}`).then(responseFromApi => {
+          console.log("responseFromApi: ", responseFromApi);
+          const numOfSeats = responseFromApi.data.seats;
+          console.log(`The num of seats is ${numOfSeats}`)
+          this.setState({
+            numberSeats: numOfSeats
+          })
+        
+    });
+  
+  }
+  
+
+displaySeats = () => {
+  let theContainer = document.getElementById('carContainer');
+  let theDiv = document.createElement('div');
+  theDiv.textContent = 'Hello'
+  console.log(theContainer)
+  if(this.state.numberSeats > 0){
+    for(let i = 0; i < this.state.numberSeats; i++){
+      theContainer.innerHTML += `<div>Seat # ${i}</div>`
+  }
+}else{
+  return <div>NO SEATS AVAILABLE</div>
+}
+}
 
   // DELETE EVENT:
   deleteEvent = () => {
@@ -77,9 +95,10 @@ class EventDetails extends Component {
     }
   };
 
+
   renderEditForm = () => {
     if (!this.state.eventName) {
-      this.getSingleEvent();
+      // this.getSingleEvent();
     } else {
       //                                                    {...props} => so we can have 'this.props.history' in Edit.js
       //                                                                                          ^
@@ -110,7 +129,15 @@ class EventDetails extends Component {
           <p>{this.state.lng}</p>
           <img src={this.state.imageUrl} alt="boohoo" height="300" />
           <TheMap theEvent={this.state}/>
-          <div><h1>Vehicle Component belongs here</h1></div>
+          <div>
+            <h1>Vehicle Component belongs here</h1>
+            {this.state.transportation}
+
+            <div id='carContainer'>
+            {this.state.numberSeats > 0 && this.displaySeats()}
+            </div>
+
+          </div>
           <div>{this.renderEditForm()} </div>
           <button onClick={() => this.deleteEvent()}>Delete Event</button>
           <br />
