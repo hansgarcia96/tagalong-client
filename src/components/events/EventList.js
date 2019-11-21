@@ -23,14 +23,9 @@ class EventList extends Component {
     });
   };
 
-<<<<<<< HEAD
 
   render() {
     
-=======
-  render() {
-
->>>>>>> 599d2c19d41f5ab1964f25393acd5264b5100c1c
       return (
         <div>
           <div style={{ width: "60%", float: "left" }}>
@@ -49,11 +44,8 @@ class EventList extends Component {
           </div>
         </div>
       );
-<<<<<<< HEAD
    
     
-=======
->>>>>>> 599d2c19d41f5ab1964f25393acd5264b5100c1c
   }
 }
 
