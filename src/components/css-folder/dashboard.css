@@ -1,3 +1,15 @@
-.theedashboard nav{
-  background-color: black;
+.jumbo{
+  background-color: #ecdce6;
+  overflow: hidden;
+  height: 100%;
+  position: relative;
+  width: 280px;
+}
+
+.eachConcert{
+  margin: 20px;
+  display: flex;
+  justify-content: space-evenly;
+  box-sizing: border-box;
+  float: left;
 }

@@ -34,3 +34,41 @@ src: url('https://fonts.googleapis.com/css?family=Amatic+SC|Josefin+Slab|Open+Sa
   text-shadow: #000000 1px 0 10px;
 }
 
+.outside nav{
+    display: flex;
+    float: right;
+    justify-content: space-between;
+    height: 90px;
+    border: none;
+    background-color: transparent;
+}
+
+.outside li{
+  padding-right: 55px;
+  font-size: 23px;
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  justify-content: space-between;
+}
+
+.outside a{
+  margin-top: 25px;
+  color: #fff !important;
+}
+
+.outside #theText img{
+  height: 90px;
+  padding-left: 30px;
+  width: auto;
+}
+
+
+.outside #theText li {
+  list-style-type: none;
+  display: inline-block;
+  
+}
+
+.outside #theText ul{
+  width: fit-content;
+}

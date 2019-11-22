@@ -3,6 +3,9 @@ import axios from 'axios';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
+import '../css-folder/dashboard.css';
+
+
 
 class Concerts extends Component {
   constructor(props) {
@@ -57,18 +60,20 @@ class Concerts extends Component {
   showConcerts = () => {
     return this.state.listofConcerts.map((eachConcert) => {
       return (
-        <div key={eachConcert.id}>
-          <Jumbotron>
-            <Container>
-              <h1>{eachConcert.displayName}</h1>
-              <br></br>
-              <p> Set Countdown {eachConcert.start.time}</p>
-              <p>{eachConcert.uri}</p>
-              <p>
-                <Button variant="primary">Create Event</Button>
-              </p>
-            </Container>
-          </Jumbotron>
+        <div className="eachConcert">
+          <div key={eachConcert.id}>
+            <div className="jumbo">
+              <Container>
+                <p>{eachConcert.displayName}</p>
+                <br></br>
+                <p> Set Countdown {eachConcert.start.time}</p>
+                <p>{eachConcert.uri}</p>
+                <p>
+                  <Button variant="primary">Create Event</Button>
+                </p>
+              </Container>
+            </div>
+          </div>
         </div>
       )
     })

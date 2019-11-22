@@ -9,13 +9,11 @@ const Landing = () => {
   return (
     <div>
       <nav className="nav-style" id ="theText">
-        <div>
-        <li>
-          <img src ={TagLogo} className="logo" />
-        </li>
-        </div>
         <div className="userSign">
           <ul>
+          <li>
+            <img src ={TagLogo} className="logo" />
+          </li>
           <li> <Link to="/login">
                 Login
               </Link></li>
