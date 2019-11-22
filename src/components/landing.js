@@ -19,9 +19,10 @@ const Landing = () => {
           <li> <Link to="/login">
                 Login
               </Link></li>
-          <li><Link to='/'></Link>
-              <Link to="/signup">
-                Signup
+          <li>
+            <Link to='/'></Link>
+            <Link to="/signup">
+              Signup
             </Link></li>
         </ul>
         </div>

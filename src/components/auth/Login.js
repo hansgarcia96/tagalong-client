@@ -4,8 +4,7 @@ import { Link } from "react-router-dom";
 import history from "../../history";
 import '../css-folder/loginApp.css';
 import BodyClassName from 'react-body-classname';
-
-
+import TagLogoAlt from '../css-folder/images/LogoMakr_4NKy7z.png';
 
 class Login extends Component {
   constructor(props) {
@@ -38,35 +37,43 @@ class Login extends Component {
 
   render() {
     return (
-      <div className="theLogin">
-      <BodyClassName className="inside"></BodyClassName>
-        <form onSubmit={this.handleFormSubmit}>
-          <input
-            type="text"
-            placeholder="Username Here!"
-            name="username"
-            value={this.state.username}
-            onChange={e => this.handleChange(e)}
-          />
+      <div>
+        <BodyClassName className="inside"></BodyClassName>
+        <div className="theLoginBox">  
+          <div className="theLogin">
+          <Link to={"/"}> 
+          <img src ={TagLogoAlt} className="logo" />
+          </Link>
+            <form onSubmit={this.handleFormSubmit}>
+              <p>Username:</p>
+              <input
+                type="text"
+                placeholder="Enter Username"
+                name="username"
+                value={this.state.username}
+                onChange={e => this.handleChange(e)}
+              />
+              <p>Password:</p>
+              <input 
+                type="password"
+                name="password"
+                placeholder="Enter Password"
+                value={this.state.password}
+                onChange={e => this.handleChange(e)}
+              />
+              <br />
+              <button className="btn btn-primary btn-block" 
+              type="submit">Log In</button>
 
-          <br />
-          <input
-            type="password"
-            name="password"
-            placeholder="Secret Password"
-            value={this.state.password}
-            onChange={e => this.handleChange(e)}
-          />
-          <br />
-          <input type="submit" value="Login!" />
-        </form>
-        <br />
-        <p>
-          Don't have account?
-          <br />
-          <br />
-          <Link to={"/signup"}>Signup!</Link>
-        </p>
+            </form>
+            <br />
+          </div>
+        </div>
+            <p>
+             <br />
+              Don't have account?
+              <Link to={"/signup"}> Signup!</Link>
+            </p>
       </div>
     );
   }

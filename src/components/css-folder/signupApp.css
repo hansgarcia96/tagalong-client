@@ -1,14 +1,14 @@
-.inside{
+.signUpBody{
   background-color: #f9f9f9;
 }
 
-.theLoginBox{
-  display: block;
+.theSignUpBox{
+ display: block;
   display: flex;
   justify-content: center;
 }
 
-.theLogin{
+.signupForm{
   width: 340px;
   padding: 20px;
   padding: 20px;
@@ -19,22 +19,22 @@
   margin-top: 150px;
 }
 
-.theLogin p{
+.signupForm p{
   display: block;
-  margin-top: 7px;
   margin-bottom: 7px;
   text-align: left;
   font-weight: bold;
-
 }
 
-.theLogin input{
+.signupForm input{
   display: block;
   width: 100%;
   padding-left: 5px;
 }
 
-.theLogin button{
+.signupForm button{
+  display: block;
+  width: 100%;
+  color: #fff;
   background-color: #28a745;
 }
-

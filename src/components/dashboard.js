@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import UserEvents from "./events/UserEvents";
 import Concerts from "./concerts/concert";
+import './css-folder/dashboard.css';
+import BodyClassName from 'react-body-classname';
+
 
 class Dashboard extends Component {
   constructor(props) {
@@ -37,19 +40,16 @@ class Dashboard extends Component {
     // console.log(this.state);
     
   render() {
-    
     this.getCurrentPosition()
     if (this.props.currentUser) {
       return (
         <div>
-
           DASHBOARD
           <div className="myTest">
+            <BodyClassName className="theedashboard"></BodyClassName>
             <UserEvents myUser={this.props.currentUser} />
           </div>
-        
           {this.state.userLat !== '' ? <Concerts getUserCoords={this.state}/> : <div>Not Working</div>}
-
         </div>
       );
     } else {
@@ -59,7 +59,6 @@ class Dashboard extends Component {
           <div>
             <UserEvents />
           </div>
-      
         </div>
       );
     }
