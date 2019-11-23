@@ -89,7 +89,7 @@ class Concerts extends Component {
     console.log(this.state)
     return ( 
       <div>
-        <h1>Concerts Nearby Based On User Broswer Location!</h1>
+        <h1>Concerts Near You!</h1>
         <div className ="fullContain">
           {this.showConcerts()}
         </div>
