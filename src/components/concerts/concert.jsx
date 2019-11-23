@@ -3,7 +3,7 @@ import axios from 'axios';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
-import '../css-folder/dashboard.css';
+import '../css-folder/concertDashboard.css';
 
 
 
@@ -60,21 +60,19 @@ class Concerts extends Component {
   showConcerts = () => {
     return this.state.listofConcerts.map((eachConcert) => {
       return (
-        <div className="eachConcert">
-          <div key={eachConcert.id}>
-            <div className="jumbo">
-              <Container>
-                <p>{eachConcert.displayName}</p>
-                <br></br>
-                <p> Set Countdown {eachConcert.start.time}</p>
-                <p>{eachConcert.uri}</p>
-                <p>
-                  <Button variant="primary">Create Event</Button>
-                </p>
-              </Container>
+       <div className ="fullContain"> 
+            <div className="eachJumbo" key={eachConcert.id}>
+              <div className="jumbo">
+                  <p>{eachConcert.displayName}</p>
+                  <br></br>
+                  <p> Set Countdown {eachConcert.start.time}</p>
+                  <p>{eachConcert.uri}</p>
+                  <p>
+                    <Button variant="primary">Create Event</Button>
+                  </p>
             </div>
           </div>
-        </div>
+      </div>
       )
     })
   }
@@ -91,8 +89,8 @@ class Concerts extends Component {
     console.log(this.state)
     return ( 
       <div>
-        <div>
-          <h1>Concerts Nearby Based On User Broswer Location!</h1>
+        <h1>Concerts Nearby Based On User Broswer Location!</h1>
+        <div className ="fullContain">
           {this.showConcerts()}
         </div>
       </div>

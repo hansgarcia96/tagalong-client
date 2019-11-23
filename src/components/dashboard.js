@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import UserEvents from "./events/UserEvents";
 import Concerts from "./concerts/concert";
-import './css-folder/dashboard.css';
 import BodyClassName from 'react-body-classname';
-
+import './css-folder/fullDashboard.css';
 
 class Dashboard extends Component {
   constructor(props) {
@@ -43,8 +42,7 @@ class Dashboard extends Component {
     this.getCurrentPosition()
     if (this.props.currentUser) {
       return (
-        <div>
-          DASHBOARD
+        <div className='myEvents'>
           <div className="myTest">
             <BodyClassName className="theedashboard"></BodyClassName>
             <UserEvents myUser={this.props.currentUser} />
@@ -54,12 +52,7 @@ class Dashboard extends Component {
       );
     } else {
       return (
-        <div>
-          DASHBOARD
-          <div>
-            <UserEvents />
-          </div>
-        </div>
+        <div></div>
       );
     }
   }
