@@ -23,7 +23,7 @@ class EventDetails extends Component {
       .get(`http://localhost:5000/api/events/${params.id}`)
       .then(responseFromApi => {
         const theEvent = responseFromApi.data;
-        console.log("the event: ", theEvent)
+        console.log("the event from EVentDetails.js: ", theEvent)
         this.setState(theEvent, () => {
           this.getVehicle(this.state)
         });

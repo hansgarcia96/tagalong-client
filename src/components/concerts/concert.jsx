@@ -14,14 +14,14 @@ class Concerts extends Component {
     const userLat = this.props.getUserCoords.userLat;
     const userLng = this.props.getUserCoords.userLng;
 
-    console.log(`The user location: lat ${userLat}, lng: ${userLng}`)
+    // console.log(`The user location: lat ${userLat}, lng: ${userLng}`)
 
     axios.get(`https://api.songkick.com/api/3.0/search/locations.json?location=geo:${userLat},${userLng}&apikey=wXhfjuiigBr1Hnnx`)
     .then(responseFromApi => {
     
       const metroId = responseFromApi.data.resultsPage.results.location[0].metroArea.id;
-      console.log(metroId);
-      //return metroId;
+      // console.log(metroId);
+      // return metroId;
       return this.findConcertsNearby(metroId);
     })
   }
@@ -30,8 +30,8 @@ class Concerts extends Component {
   
 
     const test = stuff;
-    console.log(test);
-    console.log('from MIami',test);
+    //console.log(test);
+    //console.log('from MIami',test);
     //console.log("from findConcertsNearby:", this.state)
 
     //const userLat = this.props.getUserCoords.userLat;
@@ -83,7 +83,7 @@ class Concerts extends Component {
 
 
   render() { 
-    console.log(this.state)
+    // console.log(this.state)
     return ( 
       <div>
         <div>
