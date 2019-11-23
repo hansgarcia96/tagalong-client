@@ -25,6 +25,7 @@ class Dashboard extends Component {
 
   componentDidMount() {
     this.getAllEvents();
+    //this.getCurrentPosition()
   }
 
   getCurrentPosition = () => {
@@ -79,37 +80,6 @@ class Dashboard extends Component {
 
     return nextEvent;
   };
-
-
-
-/*   getNextEventObject = () => {
-
-
-    console.log("FROM DASHBOARD getNextEventObject +++> nextEvent is:" , nextEvent)
-
-    let nextEventObject = nextEvent;
-    console.log("FROM DASHBOARD getNextEventObject +++> nextEventObject is: ", nextEventObject);
-
-    return nextEventObject;
-  }; */
-
-
-
-/*   displayEventInfo = () => {
-    console.log("hello from displayEventInfo")
-    let theContainer = document.getElementById('carContainer');
-    let theDiv = document.createElement('div');
-    theDiv.textContent = 'Hello'
-    console.log(theContainer)
-    if(this.state.listOfEvents.length > 0){
-     
-      theContainer.innerHTML += `<h2>EventName</h2>`
-
-    }else{
-    return <div>NO SEATS AVAILABLE</div>
-    }
-  } */
-
 
 
   render() {
