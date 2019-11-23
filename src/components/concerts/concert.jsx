@@ -4,6 +4,7 @@ import Jumbotron from 'react-bootstrap/Jumbotron';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import '../css-folder/concertDashboard.css';
+import { Link } from "react-router-dom";
 
 
 
@@ -58,18 +59,15 @@ class Concerts extends Component {
 
 
   showConcerts = () => {
-    return this.state.listofConcerts.map((eachConcert) => {
+    return this.state.listofConcerts.slice(0, 16).map((eachConcert) => {
       return (
        <div className ="fullContain"> 
             <div className="eachJumbo" key={eachConcert.id}>
               <div className="jumbo">
                   <p>{eachConcert.displayName}</p>
-                  <br></br>
-                  <p> Set Countdown {eachConcert.start.time}</p>
-                  <p>{eachConcert.uri}</p>
-                  <p>
-                    <Button variant="primary">Create Event</Button>
-                  </p>
+                  <br />
+                  <a className="thusButton" href={eachConcert.uri}>Buy Ticket</a>
+                  <p className="countdown"> Start Time: {eachConcert.start.time}</p>                
             </div>
           </div>
       </div>
@@ -89,7 +87,7 @@ class Concerts extends Component {
     // console.log(this.state)
     return ( 
       <div>
-        <h1>Concerts Nearby Based On User Broswer Location!</h1>
+        <h1 className="nearYou">Concerts Near You!</h1>
         <div className ="fullContain">
           {this.showConcerts()}
         </div>

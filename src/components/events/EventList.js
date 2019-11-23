@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import '../css-folder/createEvent.css';
+import BodyClassName from 'react-body-classname';
+
 
 import AddEvent from "./AddEvent";
 
@@ -28,19 +31,23 @@ class EventList extends Component {
     
       return (
         <div>
-          <div style={{ width: "60%", float: "left" }}>
-            {this.state.listOfEvents.map(event => {
-              return (
-                <div key={event._id}>
-                  <Link to={`/events/${event._id}`}>
-                    <h3>{event.eventName}</h3>
-                  </Link>
-                </div>
-              );
-            })}
-          </div>
-          <div style={{ width: "40%", float: "right" }}>
-            <AddEvent getEvent={this.getAllEvents} />
+        <BodyClassName className="theeEvent"></BodyClassName>
+          <div className="eventContain">
+            <div className="theForm">
+              <AddEvent getEvent={this.getAllEvents} />
+            </div>
+            <div className="eventNames">
+              {this.state.listOfEvents.map(event => {
+                return (
+                  <div key={event._id}>
+                    <Link to={`/events/${event._id}`}>
+                      <h3>{event.eventName}</h3>
+                    </Link>
+                  </div>
+                );
+              })}
+            </div>
+
           </div>
         </div>
       );

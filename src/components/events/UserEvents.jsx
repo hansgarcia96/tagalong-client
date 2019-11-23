@@ -30,6 +30,7 @@ class UserEvents extends Component {
     if (this.state.userEvents.length) {
       let theArray = this.state.userEvents;
       filterEvents = theArray.filter(eachEvent => {
+
         return eachEvent.author === myId;
       });
     }
@@ -37,6 +38,7 @@ class UserEvents extends Component {
     return filterEvents.map(eachEvent => {
       return (
         <div key={eachEvent._id}>
+          <img src={eachEvent.imageUrl} alt="boohoo" height="300" />
           <h3>{eachEvent.eventName}</h3>
         </div>
       );
