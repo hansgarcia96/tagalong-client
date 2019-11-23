@@ -59,7 +59,7 @@ class Concerts extends Component {
 
 
   showConcerts = () => {
-    return this.state.listofConcerts.map((eachConcert) => {
+    return this.state.listofConcerts.slice(0, 16).map((eachConcert) => {
       return (
        <div className ="fullContain"> 
             <div className="eachJumbo" key={eachConcert.id}>
@@ -87,7 +87,7 @@ class Concerts extends Component {
     // console.log(this.state)
     return ( 
       <div>
-        <h1>Concerts Near You!</h1>
+        <h1 className="nearYou">Concerts Near You!</h1>
         <div className ="fullContain">
           {this.showConcerts()}
         </div>

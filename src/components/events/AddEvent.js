@@ -131,6 +131,7 @@ class AddShenanigan extends Component {
           <br />
           {<AutoComplete getCoord={coordObj => this.setCoord(coordObj)} />}
           <br />
+          
           <label>Start Date</label>
           <input
             type="date"

@@ -8,6 +8,7 @@ import axios from "axios";
 import { throws } from "assert";
 import BodyClassName from 'react-body-classname';
 import './css-folder/fullDashboard.css';
+import Footer from '../components/footer';
 
 
 class Dashboard extends Component {
@@ -115,41 +116,52 @@ class Dashboard extends Component {
     this.getCurrentPosition()
     if (this.props.currentUser) {
       return (
-        <div className='myEvents'>
-          <div className="myTest">
-            <BodyClassName className="theedashboard"></BodyClassName>
-            <UserEvents myUser={this.props.currentUser} />
-          </div>
-          <div>
-            {/* <EventCountdown /> */}
-            {/* {<Countdown date={`${year}-12-24T00:00:00`} />} */}
-            <div id="carContainer">
-              {this.state.listOfEvents > 0 && this.displayEventInfo()}
+       <div id="myNextBackground">
+          <div className='myEvents'>
+            <div className="myTest">
+              <BodyClassName className="theedashboard"></BodyClassName>
+              <UserEvents myUser={this.props.currentUser} />
             </div>
-            {this.state.listOfEvents.length > 0 ? (
-              <Countdown
-                date={this.getNextEvent()}
-              />
+            <div>
+              {/* <EventCountdown /> */}
+              {/* {<Countdown date={`${year}-12-24T00:00:00`} />} */}
+              <div id="carContainer">
+                {this.state.listOfEvents > 0 && this.displayEventInfo()}
+              </div>
+              {this.state.listOfEvents.length > 0 ? (
+                <Countdown
+                  date={this.getNextEvent()}
+                />
+              ) : (
+                <div>Not Working</div>
+              )}
+            </div>
+            {this.state.userLat !== "" ? (
+              <Concerts getUserCoords={this.state} />
             ) : (
-              <div>Not Working</div>
+              <div class="loader">Loading...</div>
+          
+
             )}
+            <div>
+              <Footer />
+            </div>
           </div>
-          {this.state.userLat !== "" ? (
-            <Concerts getUserCoords={this.state} />
-          ) : (
-            <div>Not Working</div>
-          )}
         </div>
       );
     } else {
       return (
-        <div>
-          DASHBOARD
-          <div>
-            <UserEvents />
-          </div>
-          <div>
-            <EventCountdown />
+        <div id="myNextBackground">
+          <div className="myNextEvent">
+            <div>
+              <UserEvents />
+            </div>
+            <div>
+              <EventCountdown />
+            </div>
+            <div>
+              <Footer />
+            </div>
           </div>
         </div>
       );
