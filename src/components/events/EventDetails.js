@@ -131,9 +131,9 @@ displaySeats = () => {
 
           <p>Start Date: {this.state.startDate}</p>
           <p>End Date: {this.state.endDate}</p>
-          <h3>{this.state.transportation}</h3>
-          <p>{this.state.lat}</p>
-          <p>{this.state.lng}</p>
+          {/* <h3>{this.state.transportation}</h3> */}
+        {/*   <p>{this.state.lat}</p>
+          <p>{this.state.lng}</p> */}
           <img src={this.state.imageUrl} alt="boohoo" height="300" />
           <TheMap theEvent={this.state}/>
           <div>
