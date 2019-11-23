@@ -6,6 +6,8 @@ import EventCountdown from "./events/EventCountdown";
 import Countdown from "./events/test";
 import axios from "axios";
 import { throws } from "assert";
+import BodyClassName from 'react-body-classname';
+import './css-folder/fullDashboard.css';
 
 class Dashboard extends Component {
   constructor(props) {
@@ -109,15 +111,12 @@ class Dashboard extends Component {
 
 
   render() {
-    /*     const currentDate = new Date();
-    const year = (currentDate.getMonth() === 11 && currentDate.getDate() > 23) ? currentDate.getFullYear() + 1 : currentDate.getFullYear(); */
-
-    this.getCurrentPosition();
+    this.getCurrentPosition()
     if (this.props.currentUser) {
       return (
-        <div>
-          DASHBOARD
+        <div className='myEvents'>
           <div className="myTest">
+            <BodyClassName className="theedashboard"></BodyClassName>
             <UserEvents myUser={this.props.currentUser} />
           </div>
           <div>

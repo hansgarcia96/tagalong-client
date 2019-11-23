@@ -3,6 +3,10 @@ import AuthService from "./auth-service";
 import { Link } from "react-router-dom";
 import history from "../../history";
 import service from "../../api/service";
+import '../css-folder/signupApp.css';
+import BodyClassName from 'react-body-classname';
+import TagLogoAlt from '../css-folder/images/LogoMakr_4NKy7z.png';
+
 
 class Signup extends Component {
   constructor(props) {
@@ -70,47 +74,61 @@ class Signup extends Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.handleFormSubmit}>
-          <label>Username:</label>
-          <input
-            type="text"
-            name="username"
-            value={this.state.username}
-            onChange={e => this.handleChange(e)}
-          />
-
-          <label>Password:</label>
-          <input
-            type="password"
-            name="password"
-            value={this.state.password}
-            onChange={e => this.handleChange(e)}
-          />
-          <br />
-          <input
-            type="text"
-            placeholder="First Name"
-            name="firstName"
-            value={this.state.firstName}
-            onChange={e => this.handleChange(e)}
-          />
-          <br />
-          <input
-            type="text"
-            placeholder="Last Name"
-            name="lastName"
-            value={this.state.lastName}
-            onChange={e => this.handleChange(e)}
-          />
-          <br />
-          <input type="file" onChange={e => this.handleFileUpload(e)} />
-          <br />
-          <button type="submit">Submit</button>
-        </form>
-        <p>
-          Already have account?
-          <Link to={"/login"}> Login</Link>
-        </p>
+        <div className="theSignUpBox">
+          <div className="signupForm">
+            <BodyClassName className="signUpBody"></BodyClassName>
+           <Link to={"/"}> 
+           <img src ={TagLogoAlt} className="logo" />
+           </Link>
+            <form onSubmit={this.handleFormSubmit}>
+              <div className="nameLast">
+                <input
+                  type="text"
+                  placeholder="First Name"
+                  name="firstName"
+                  value={this.state.firstName}
+                  onChange={e => this.handleChange(e)}
+                  />
+                <br />  
+                <input
+                  type="text"
+                  placeholder="Last Name"
+                  name="lastName"
+                  value={this.state.lastName}
+                  onChange={e => this.handleChange(e)}
+                  />
+              </div>
+              <br />
+              {/* <p>New Username:</p> */}
+              <input
+                type="text"
+                name="username"
+                placeholder="Username"
+                value={this.state.username}
+                onChange={e => this.handleChange(e)}
+              />
+              <br />
+              {/* <p>New Password:</p> */}
+              <input
+                type="password"
+                name="password"
+                placeholder="Password"
+                value={this.state.password}
+                onChange={e => this.handleChange(e)}
+              />
+              <br />
+              <p>Upload Profile Picture:</p>
+              <input type="file" onChange={e => this.handleFileUpload(e)} />
+              <br />
+              <button className="btn btn-primary btn-block" type="submit">Submit</button>
+            </form>
+          </div> 
+        </div> 
+            <p>
+            <br />
+              Already have account?
+              <Link to={"/login"}> Login</Link>
+            </p>
       </div>
     );
   }

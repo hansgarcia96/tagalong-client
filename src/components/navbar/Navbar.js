@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import AuthService from "../auth/auth-service";
 import '../css-folder/navbar.css';
 import TagLogo from '../css-folder/images/LogoMakr_1z6JBI.png';
+import BodyClassName from 'react-body-classname';
+
 
 class Navbar extends Component {
   constructor(props) {
@@ -27,24 +29,24 @@ class Navbar extends Component {
           <ul>
             <li>Welcome, {this.state.loggedInUser.firstName}</li>
             <li>
-              <Link to="/events" style={{ textDecoration: "none" }}>
-                Events
-              </Link>
-            </li>
-            <li>
               <Link to="/dashboard" style={{ textDecoration: "none" }}>
                 Home
               </Link>
             </li>
             <li>
+              <Link to="/events" style={{ textDecoration: "none" }}>
+                Events
+              </Link>
+            </li>
+            <li>
               <Link to="/profile" style={{ textDecoration: "none" }}>
-                Profile
+                Vehicle
               </Link>
             </li>
            
             <li>
               <Link to="/">
-                <button onClick={() => this.logoutUser()}>Logout</button>
+                <button className="btn btn-primary btn-block" onClick={() => this.logoutUser()}>Logout</button>
               </Link>
             </li>
           </ul>
