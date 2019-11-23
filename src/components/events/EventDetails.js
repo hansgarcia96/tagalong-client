@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom"; // REDIRECT
 import EditEvent from "./EditEvent";
-
+import'../css-folder/eventDetails.css';
 
 import TheMap from "../google/maps";
 
@@ -122,19 +122,22 @@ displaySeats = () => {
   render() {
     if(this.state !== null){
       return (
-        <div>
+        <div className="mainEventDetails">
+         <div className="info"> 
           <h1>{this.state.eventName}</h1>
           <p>{this.state.description}</p>
           <p>{this.state.category}</p>
           {this.state.author && <p>{this.state.author.firstName} {this.state.author.lastName}</p> }
-
+          
           <p>Start Date: {this.state.startDate}</p>
           <p>End Date: {this.state.endDate}</p>
           <h3>{this.state.transportation}</h3>
           <p>{this.state.lat}</p>
           <p>{this.state.lng}</p>
           <img src={this.state.imageUrl} alt="boohoo" height="300" />
-          <TheMap theEvent={this.state}/>
+          </div>
+          <TheMap className='theBigMap' theEvent={this.state}/>
+          
           <div>
             <h1>Vehicle Component belongs here</h1>
             {this.state.transportation}
