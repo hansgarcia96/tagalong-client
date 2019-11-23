@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import EditVehicle from "./EditVehicle";
+import EditVehicle from "../css-folder/EditVehicle";
 import '../css-folder/carView.css'
 
 class VehicleDetails extends Component {
