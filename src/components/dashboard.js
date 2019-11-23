@@ -73,15 +73,15 @@ class Dashboard extends Component {
     let nextEvent = copyOfEvents[0];
  
     console.log("FROM DASHBOARD getNextEvent => nextEvent is: ", nextEvent);
-    this.getNextEventObject(nextEvent);
     console.log(`FROM DASHBOARD getNextEvent => the getNext event date is: `, nextEvent.startDate);
 
-    return nextEvent.startDate;
+    return nextEvent;
   };
 
 
 
-  getNextEventObject = (nextEvent) => {
+/*   getNextEventObject = () => {
+
 
     console.log("FROM DASHBOARD getNextEventObject +++> nextEvent is:" , nextEvent)
 
@@ -89,11 +89,11 @@ class Dashboard extends Component {
     console.log("FROM DASHBOARD getNextEventObject +++> nextEventObject is: ", nextEventObject);
 
     return nextEventObject;
-  };
+  }; */
 
 
 
-  displayEventInfo = () => {
+/*   displayEventInfo = () => {
     console.log("hello from displayEventInfo")
     let theContainer = document.getElementById('carContainer');
     let theDiv = document.createElement('div');
@@ -106,7 +106,7 @@ class Dashboard extends Component {
     }else{
     return <div>NO SEATS AVAILABLE</div>
     }
-  }
+  } */
 
 
 
@@ -128,7 +128,6 @@ class Dashboard extends Component {
             {this.state.listOfEvents.length > 0 ? (
               <Countdown
                 date={this.getNextEvent()}
-                nextEventObj={this.getNextEventObject(this.getNextEvent())}
               />
             ) : (
               <div>Not Working</div>
