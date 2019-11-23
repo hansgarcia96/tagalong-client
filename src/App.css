@@ -1,3 +1,13 @@
+@fontface {
+  font-family: 'Amatic SC', cursive;
+  font-family: 'Oswald', sans-serif;
+  font-family: 'Josefin Slab', serif;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-family: 'Roboto', sans-serif;
+  font-family: 'Open Sans', sans-serif;
+  src: url('https://fonts.googleapis.com/css?family=Amatic+SC|Josefin+Slab|Open+Sans|Open+Sans+Condensed:300|Oswald|Roboto&display=swap')
+  }
+
 .App {
   text-align: center;
 }

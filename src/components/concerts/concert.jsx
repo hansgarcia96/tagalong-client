@@ -4,6 +4,7 @@ import Jumbotron from 'react-bootstrap/Jumbotron';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import '../css-folder/concertDashboard.css';
+import { Link } from "react-router-dom";
 
 
 
@@ -64,12 +65,9 @@ class Concerts extends Component {
             <div className="eachJumbo" key={eachConcert.id}>
               <div className="jumbo">
                   <p>{eachConcert.displayName}</p>
-                  <br></br>
-                  <p> Set Countdown {eachConcert.start.time}</p>
-                  <p>{eachConcert.uri}</p>
-                  <p>
-                    <Button variant="primary">Create Event</Button>
-                  </p>
+                  <br />
+                  <a className="thusButton" href={eachConcert.uri}>Buy Ticket</a>
+                  <p className="countdown"> Start Time: {eachConcert.start.time}</p>                
             </div>
           </div>
       </div>
