@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useLayoutEffect } from 'react';
 import PropTypes from 'prop-types'
 
 /**
@@ -23,9 +23,8 @@ class Countdown extends Component {
 
   componentDidMount() {
     // update every second
-    this.setState({
-      nextEventObj: this.props.nextEventObj
-    })
+    console.log(`this.props? :`, this.props)
+    console.log(`this.props.date? :`, this.props.date)
     this.interval = setInterval(() => {
       const date = this.calculateCountdown(this.props.date);
       date ? this.setState(date) : this.stop();
@@ -36,8 +35,11 @@ class Countdown extends Component {
     this.stop();
   }
 
-  calculateCountdown(endDate) {
-    console.log("Hello from calculateCountdown(endDate)", endDate)
+  calculateCountdown(nextEventObj) {
+
+    console.log("FROM TEST.JS ===> nextEventObj: ", nextEventObj)
+    let endDate = nextEventObj.startDate
+    console.log("FROM TEST.JS ===> calculateCountdown(endDate)", endDate)
     let diff = (Date.parse(new Date(endDate)) - Date.parse(new Date())) / 1000;
     /* let diff = (Date.parse(new Date()) - Date.parse(new Date(endDate))) / 1000; */
     console.log(`the diff is: `, diff)
@@ -89,13 +91,14 @@ class Countdown extends Component {
   }
 
   render() {
-    console.log("hello from test.js: ", this.state.nextEventObj)
+    
     const countDown = this.state;
+    console.log('COUNTDOWN is: ', countDown);
     
 
     return (
       <div className="Countdown">
-        <h1>YOUR NEXT EVENT COUNTDOWN!!!!</h1>
+        <h1>{`YOUR NEXT EVENT: ${this.props.date.eventName}`}</h1>
          
         <span className="Countdown-col">
           <span className="Countdown-col-element">
@@ -130,9 +133,9 @@ class Countdown extends Component {
   }
 }
 
-Countdown.propTypes = {
+/* Countdown.propTypes = {
   date: PropTypes.string.isRequired
-};
+}; */
 
 Countdown.defaultProps = {
   date: new Date()
