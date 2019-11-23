@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-
 import AddVehicle from "./AddVehicle";
+import BodyClassName from 'react-body-classname';
+import '../css-folder/createVehicle.css';
+
 
 // import EditVehicle from "./EditVehicle"
 
@@ -32,20 +34,23 @@ class VehicleList extends Component {
 
   render() {
     return (
-      <div>
-        <div style={{ width: "40%", float: "right" }}>
-          {this.state.listOfVehicles.map(vehicle => {
-            return (
-              <div key={vehicle._id}>
-                <Link to={`/vehicles/${vehicle._id}`}>
-                  <h3>{vehicle.model}</h3>
-                </Link>
-              </div>
-            );
-          })}
-        </div>
-        <div style={{ width: "40%", float: "right" }}>
-          <AddVehicle getVehicle={this.getAllVehicles} />
+    <div> 
+      <BodyClassName className="theeVehicle"></BodyClassName>
+      <div className="vehicleContain">
+        <div className="vehicleForm">
+            <AddVehicle getVehicle={this.getAllVehicles} />
+          </div>
+          <div className="eventNames">
+            {this.state.listOfVehicles.map(vehicle => {
+              return (
+                <div key={vehicle._id}>
+                  <Link to={`/vehicles/${vehicle._id}`}>
+                    <h3>{vehicle.model}</h3>
+                  </Link>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     );
