@@ -9,11 +9,34 @@ import TheMap from "../google/maps";
 class EventDetails extends Component {
   constructor(props) {
     super(props);
-    this.state = { theEvent: null };
+    this.state = { 
+      theEvent: null
+
+     };
   }
 
   componentDidMount() {
     this.getSingleEvent();
+  
+  }
+
+
+  getVehicle = (theInfo) => {
+    console.log(theInfo)
+    let theId = ''
+    if(theInfo){
+     theId = theInfo.transportation[0]
+    }
+    axios.get(`http://localhost:5000/api/vehicles/${theId}`).then(responseFromApi => {
+          console.log("responseFromApi: ", responseFromApi);
+          const theSingleVehicle = responseFromApi.data
+          const numOfSeats = responseFromApi.seats;
+          console.log(`The num of seats is ${numOfSeats}`)
+          this.setState({
+            numberSeats: numOfSeats
+          })
+        
+    });
   
   }
 
@@ -33,23 +56,6 @@ class EventDetails extends Component {
       });
   };
 
-  getVehicle = (theInfo) => {
-    console.log(theInfo)
-    let theId = ''
-    if(theInfo){
-     theId = theInfo.transportation[0]
-    }
-    axios.get(`http://localhost:5000/api/vehicles/${theId}`).then(responseFromApi => {
-          console.log("responseFromApi: ", responseFromApi);
-          const numOfSeats = responseFromApi.data.seats;
-          console.log(`The num of seats is ${numOfSeats}`)
-          this.setState({
-            numberSeats: numOfSeats
-          })
-        
-    });
-  
-  }
   
 
 displaySeats = () => {

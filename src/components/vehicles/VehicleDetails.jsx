@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import EditVehicle from "./EditVehicle";
+import '../css-folder/carView.css'
 
 class VehicleDetails extends Component {
   constructor(props) {
@@ -87,12 +88,16 @@ class VehicleDetails extends Component {
 
   render() {
     return (
-      <div>
+      <div className='theViews'>
         <h1>{this.state.model}</h1>
-        <p>{this.state.seats}</p>
-        <button onClick={() => this.deleteVehicle()}>Delete Vehicle</button>
+        <p>Seats Available: {this.state.seats}</p>
         <img src={this.state.imageUrl} alt="boohoo" height="300" />
+        <div>
+        <button onClick={() => this.deleteVehicle()}>Delete Vehicle</button>
+        </div>
+        <div>
         <Link to={"/vehicles"}>Back to Vehicle</Link>
+        </div>
       </div>
     );
   }
